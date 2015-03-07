@@ -10,7 +10,6 @@ var eventApp = angular.module("eventApp", ["firebase"]);
     // Here is where you update your Firebase URL.
     var ref = new Firebase("https://khoopeisin.firebaseio.com");
     $scope.events = $firebase(ref.child("event")).$asArray();
-    $scope.contacts = $firebase(ref.child("contact")).$asArray();
     
     $scope.pastevents = [
         {id:1, peName:'BEA Network Session'  , peDate:"6th June 2013" },
@@ -30,5 +29,13 @@ var eventApp = angular.module("eventApp", ["firebase"]);
         {iName:'E&Y Network Session'  , iDate:"2nd May 2017" , iVenue:"E&Y Meeting Room 1" , iHost:"Michelle KEY"},
         {iName:'APPLE Network Session'  , iDate:"21st July 2015" , iVenue:"APPLE Showroom 5" , iHost:"Jared LEO"},
         {iName:'GOOGLE Network Session'  , iDate:"26th October 2015" , iVenue:"GOOGLE Lounge 2" , iHost:"Mark KENNY"}
+    ];
+    
+    $scope.contacts =[
+        {cName:'Adeline PEBBIE'  , cEmail:"adelinepebbie@example.com"},
+        {cName:'Joshua TENG'  , cEmail:"joshuateng@example.com"},
+        {cName:'Mark JACOBS'  , cEmail:"markjacob@example.com"},
+        {cName:'Derek HOSHIMA'  , cEmail:"derekhoshima@example.com"},
+        {cName:'Peter SUKIHIKO'  , cEmail:"petersukihiko@example.com"}
     ];
 }]);
