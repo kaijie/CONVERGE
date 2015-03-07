@@ -1,3 +1,3 @@
 var redirectPage = function() {
-    window.location.assign("../homepage.html");
+    window.location.href("../homepage.html");
 }
