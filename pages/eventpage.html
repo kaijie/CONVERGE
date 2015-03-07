@@ -258,7 +258,7 @@
                             Create Event
                         </div>
                         <div class="panel-body">
-                            <form role="form">
+                            <form role="form" id="myForm">
                                 <div class="form-group">
                                     <label>Event Name</label><br>
                                     <input class="form-control" type="text" ng-model="newevent.eName" name="eventName" placeholder="Event Name">
@@ -272,8 +272,9 @@
                                     <input class="form-control" type="text" ng-model="newevent.eVenue" name="eventVenue" placeholder="Event Venue">
                                 </div>
                                 <button class="btn btn-primary"  ng-click="save()">
-                                    <span class="glyphicon glyphicon-save"></span>  Create Event
+                                    <span class="glyphicon glyphicon-pushpin"></span>  Create Event
                                 </button>
+                                 <input type="reset" class="btn btn-primary" value="Clear Form">
                             </form>
                         </div>
                     </div>
@@ -286,7 +287,24 @@
                             Invitations
                         </div>
                         <div class="panel-body">
-                            
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Event Name</th>
+                                        <th>Date</th>
+                                        <th>Venue</th>
+                                        <th>Host</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="invitation in invitations">
+                                        <td>{{ invitation.iName }}</td>
+                                        <td>{{ invitation.iDate }}</td>
+                                        <td>{{ invitation.iVenue }}</td>
+                                        <td>{{ invitation.iHost }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -300,6 +318,7 @@
                                         <th>Name</th>
                                         <th>Date</th>
                                         <th>Venue</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -307,6 +326,41 @@
                                         <td>{{ event.eName }}</td>
                                         <td>{{ event.eDate.replace("T", " ") }}</td>
                                         <td>{{ event.eVenue }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Invite</button>
+                                            <div class="modal fade" id="myModal" tabindex="-1" roles="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">Select your Contacts</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <table class="table table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Name</th>
+                                                                        <th>Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr ng-repeat "contact in contacts">
+                                                                        <td>{{ contact.name }}</td>
+                                                                        <td>
+                                                                            <input type="checkbox" value="invited">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
