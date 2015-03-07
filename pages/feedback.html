@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+    <head>
+        <link rel="stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
+        <script src="../js/feedback.js" type="text/javascript" charset="utf-8"></script>
+        <link href="../bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+        <link href="../bower_components/bootstrap-social/bootstrap-social.css" rel="stylesheet" type="text/css">
+    </head>
+    
+    <body ng-controller="userController">
+        <div class="container">
+            <!-- Show this div when the users is logged in -->
+            <div class="pull-right" ng-show="currentUser">
+                You are logged in as: {{currentUser.google.displayName}} <br><br>
+            </div>
+            <br />
+            <h3>Leave Feedback:</h3>
+            <br />
+            <form name="feedbackform" class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 default-label">Name</label>
+                <div class="col-sm-5">
+                <textarea class="form-control" rows="1"  ng-model="newuser.name" ng-disabled="!signin"></textarea>
+                </div>
+              </div> 
+              <div class="form-group">
+                <label class="col-sm-2 default-label">Email Address</label>
+                <div class="col-sm-5">
+                <textarea class="form-control" rows="1"  ng-model="newuser.email" placeholder="School Email if possible"  ng-disabled="!signin"></textarea>
+                </div>
+              </div> 
+              <div class="form-group">
+                <label class="col-sm-2 default-label">What should we start doing?</label>
+                <div class="col-sm-10">
+                <textarea class="form-control" rows="5"  ng-model="newuser.start" placeholder="You should start ..."  ng-disabled="!signin"></textarea>
+                </div>
+              </div> 
+              <div class="form-group">
+                <label class="col-sm-2 default-label">What should we stop doing?</label><br>
+                <div class="col-sm-10">
+                 <textarea class="form-control" rows="5"  ng-model="newuser.stop" placeholder="You should stop ..."  ng-disabled="!signin"></textarea>
+                </div>
+              </div> 
+                <div class="form-group">
+                <label class="col-sm-2 default-label">What should we continue doing?</label>
+                <div class="col-sm-10">
+                <textarea class="form-control" rows="5"  ng-model="newuser.cont" placeholder="You should continue ..."  ng-disabled="!signin"></textarea>
+                </div>
+              </div> 
+                <div class="form-group">
+                <label class="col-sm-2 default-label">What other recommendations do you have?</label>
+                <div class="col-sm-10">
+                <textarea class="form-control" rows="5"  ng-model="newuser.other" placeholder="You should also try ..."  ng-disabled="!signin"></textarea>
+                </div>
+              </div> 
+            </form>
+            <br>
+            <button class="btn btn-primary"  ng-click="save()">
+            <span class="glyphicon glyphicon-save"></span>  Submit Feedback
+            </button>
+            <button class="btn btn-primary" onClick="location.href='index.html'">
+            <span class="glyphicon glyphicon-home"></span>   Return to Main Page</button>
+            <div class="col-sm-3" ng-show="{{currentUser}}">
+            <a class="btn btn-block btn-social btn-google-plus" ng-click="login('google')">
+                <i class="fa fa-google-plus"></i> Sign in with Google
+            </a>
+            </div>
+            <br><br>
+            Thank you for your feedback. Please check out the awesome application developed by the team presenting after us (<a href="">Team 2</a>).
+        </div>
+    </body>
+</html>
