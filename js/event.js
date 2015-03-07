@@ -19,6 +19,10 @@ var eventApp = angular.module("eventApp", ["firebase"]);
         {id:5, peName:'HP Network Session' , peDate:"22th November 2009" }
     ];
     
+    $scope.save = function() {
+        $scope.events.$add($scope.newevent);
+        
+    }
     
     
 }]);
