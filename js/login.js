@@ -24,7 +24,7 @@ console.log("User is logged out");
 
 $scope.logout = function(loginProvider){
 $scope.currentUser = null;
-}
+};
 
 $scope.login = function(loginProvider){
 ref.authWithOAuthPopup(loginProvider, function(error, authData) {
@@ -34,11 +34,12 @@ console.log("Login Failed!", error);
 console.log("Authenticated successfully with payload:", authData);
 //Add the user to the users list. 
 ref.child("user/"+authData.uid).transaction(function(currentValue) {
+    window.location.assign("http://upkk2285f9e4.peisin.koding.io/assignment2/startbootstrap-sb-admin-2/pages/index.html");
 return authData;
 });
 $scope.currentUser = $firebase(ref.child("user").child(authData.uid)).$asObject(); 
 $scope.users = $firebase(ref.child("feedback")).$asArray();
 }
 });
-}
+};
 }]);
